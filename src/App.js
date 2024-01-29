@@ -7,11 +7,25 @@ const App = () => {
   const obj={
     text:"ays software solution",
   }
+  const employees=[
+    {
+      id:1,
+      name:"abhi",
+      salary:30000,
+      dept:"IT"
+    },
+    {
+      id:2,
+      name:"rohan",
+      salary:35000,
+      dept:"ENGG"
+    }
+  ]
   return (
     <div className="demo">
       <Navbar obj={obj}/>
       <div className='main'>
-      <Employee/>
+      <Employee emparr={employees}/>
       <EmpDetails/>
       </div>
      

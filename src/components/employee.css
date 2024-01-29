@@ -1,5 +1,31 @@
 .employee{
     height: 80vh;
     width: 20vw;
-    background-color: aquamarine;
+    
+    display: flex;
+    flex-direction: column;
+}
+.Toolbar{
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+}
+.Employeelist{
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+.myInput{
+    height: 10px;
+    width: 20px;
+}
+button{
+    margin: 4px;
+    height: 35px;
+    width: 35px;
+}
+.empbt{
+    height: 35px;
+    width: 45px;
 }
