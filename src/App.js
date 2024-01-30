@@ -19,6 +19,12 @@ const App = () => {
       name:"rohan",
       salary:35000,
       dept:"ENGG"
+    },
+    {
+      id:3,
+      name:"bhargav",
+      salary:50000,
+      dept:"ENGG"
     }
   ])
   const[selected,ch_sel] = useState({})
