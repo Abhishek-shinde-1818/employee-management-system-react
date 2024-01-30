@@ -1,11 +1,34 @@
 import React from 'react'
-import './empdetails.css'
-import EmpForm from './EmpForm'
+import './employee.css'
 
-const EmpDetails = () => {
+
+const EmpDetails = (props) => {
+  
   return (
     <div className='empdetails'>
-    <EmpForm/>
+    
+    {
+      <table>
+      <tbody>
+        <tr>
+          <td>Name:</td>
+          <td>{props.selectedemp.name}</td>
+        </tr>
+        <tr>
+          <td>Salary:</td>
+          <td>{props.selectedemp.salary}</td>
+        </tr>
+        <tr>
+          <td>Department:</td>
+          <td>{props.selectedemp.dept}</td>
+        </tr>
+      </tbody>
+    </table>
+    }
+    <div className='buttons'>
+    <button className='edit'>edit</button>
+    <button className='delete'>delete</button>
+    </div>
     </div>
   )
 }
