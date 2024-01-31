@@ -1,15 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './empdetails.css'
-const EmpForm = () => {
+const EmpForm = (props) => {
+  const[newEmpobj,setNewEmpobj]=useState({})
+  let newobj = {}
+  function updateData(e)
+  {
+let temp= JSON.parse(JSON.stringify(newEmpobj))
+temp[e.target.name]= e.target.value
+setNewEmpobj(temp)
+    // newobj[e.target.name]=e.target.value
+    // console.log("OBJ",newobj);
+    // setNewEmpobj(newobj)
+    // console.log("FINAL", newEmpobj);
+    // console.log("djd");
+  }
+  function onsubmit()
+  {
+    console.log("SUBMIT", newEmpobj);
+    console.log("SUBMIsssT");
+    props.addemp(newEmpobj)
+  }
   return (
     <div className='empform'>
-      <form >
+      {/* <form > */}
         <label>
           Name:
           <input
+            id="1"
             type="text"
             name="name"
-            
+            onChange={updateData}
             
             required
           />
@@ -18,38 +38,31 @@ const EmpForm = () => {
         <label>
           Salary:
           <input
+          id="2"
             type="number"
             name="salary"
-           
+            onChange={updateData}
             required
           />
         </label>
         <br />
-        <label>
-          Designation:
-          <input
-            type="text"
-            name="designation"
-           
-            required
-          />
-        </label>
-        <br />
+        
         <label>
           Department:
           <select
-            name="department"
-           
+          id="4"
+            name="dept"
+            onChange={updateData}
           >
             <option value="IT">IT</option>
             <option value="HR">HR</option>
             <option value="Finance">Finance</option>
-            {/* Add more departments as needed */}
+            
           </select>
         </label>
         <br />
-        <button type="submit">Submit</button>
-      </form>   
+        <button onClick={onsubmit}>Submit</button>
+      {/* </form>    */}
     </div>
   )
 }

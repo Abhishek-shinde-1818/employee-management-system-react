@@ -23,11 +23,11 @@
 button{
     margin: 4px;
     height: 35px;
-    width: 45px;
+    width: 95px;
 }
 .empbt{
     height: 35px;
-    width: 45px;
+    width: 65px;
 }
 .del{
     height: 35px;
@@ -37,8 +37,8 @@ button{
 table {
     border-collapse: collapse;
     width: 50%;
-    margin-left: 85%;
-    margin-top: 70%;
+    margin-left: 15%;
+    margin-top: 10%;
 
 }
 
@@ -50,6 +50,6 @@ th, td {
 .buttons{
     display: flex;
     flex-direction: row;
-    margin-left: 85%;
-    margin-top: 20%;
+    margin-left: 15%;
+    margin-top: 10%;
 }

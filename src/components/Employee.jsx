@@ -12,8 +12,8 @@ const Employee = (props) => {
       
   return (
     <div className='employee'>
-    <Toolbar emparr={props.emparr} inputValue={inputValue} handleInputChange={handleInputChange} />
-    <Employeelist emparr={props.emparr} selected={props.selected}  change_selection={props.change_selection} inputValue={inputValue} handleInputChange={handleInputChange} selectedBt={selectedBt}/>
+    <Toolbar empArr={props.empArr} inputValue={inputValue} handleInputChange={handleInputChange} />
+    <Employeelist empArr={props.empArr} selectedEmp={props.selectedEmp}  selectEmployee={props.selectEmployee} inputValue={inputValue} handleInputChange={handleInputChange} selectedBt={selectedBt}/>
     </div>
   )
 }
@@ -30,45 +30,46 @@ const Toolbar = (props) => {
 }
 const Emp = (props)=>{
   let color;
-  if (props.emp.id === props.selected.id){
+  if (props.emp.id === props.selectedEmp.id){
     color = 'red'
   }else{
     color = 'green'
   }
   function fun(){
-    console.log(props.emp);
-    props.change_selection(props.emp)
+    
+    props.selectEmployee(props.emp)
   }
   return(
-    <button style={{backgroundColor:color}} className='empbt' onClick={fun}>{props.emp.name}</button>
+    <button id="2" style={{backgroundColor:color}} className='empbt' onClick={fun}>{props.emp.name}</button>
   )
 }
 
 const Employeelist = (props) => {
-  let darr=props.emparr
-  let text=props.inputValue
+  
+  let clonedArray = props.empArr.map(a => {return {...a}})
+  let searchText=props.inputValue
   let selectedBt=props.selectedBt
-  console.log(selectedBt)
+  
   let newarr=[]
   
-  let filtered=[]
+  let filteredArr=[]
   function fun(){
     if(selectedBt==="1")
     {
-      filtered = darr.filter(user => user.name.includes(text));
+      filteredArr = clonedArray.filter(user => user.name.includes(searchText));
     }
     else if(selectedBt==="2"){
-      darr.sort((a, b) => (a.name > b.name) ? 1 : -1)
-      filtered=darr
+      clonedArray.sort((a, b) => (a.name > b.name) ? 1 : -1)
+      filteredArr=clonedArray
     }
     else{
-      darr.sort((a, b) => (a.name < b.name) ? 1 : -1)
-      filtered=darr
+      clonedArray.sort((a, b) => (a.name < b.name) ? 1 : -1)
+      filteredArr=clonedArray
     }
     
-    for(let i=0;i<filtered.length;i++){
+    for(let i=0;i<filteredArr.length;i++){
      
-        newarr.push(<Emp emp={filtered[i]} selected={props.selected} change_selection={props.change_selection} key={darr[i].id}/>)
+        newarr.push(<Emp emp={filteredArr[i]} selectedEmp={props.selectedEmp} selectEmployee={props.selectEmployee} key={filteredArr[i].id}/>)
     }
     return newarr
   }

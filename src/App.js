@@ -7,7 +7,7 @@ const App = () => {
   const obj={
     text:"ays software solution",
   }
-  const[employees,u_employees] = useState([
+  const[employees,updatedEmployees] = useState([
     {
       id:1,
       name:"abhi",
@@ -27,16 +27,38 @@ const App = () => {
       dept:"ENGG"
     }
   ])
-  const[selected,ch_sel] = useState({})
-  function change_selection(change){
-    ch_sel(change)
+  
+  
+  function addemp(newEmpobj)
+  {
+    
+    let temp=JSON.parse(JSON.stringify(employees))
+    
+    temp.push(newEmpobj)
+    updatedEmployees(temp)
+    setSelectedCentre("")
+  }
+  
+  
+  
+  //selected employee state
+  const[selectedEmp,setSelectedEmp] = useState({})
+  function selectEmployee(employee){
+    setSelectedEmp(employee)
+    
+  }
+  // state for centre div
+  const[selectedCentre,setSelectedCentre]=useState("")
+  function displayCentre(e)
+  {
+    setSelectedCentre(e.target.id)
   }
   return (
     <div className="demo">
-      <Navbar obj={obj}/>
+      <Navbar obj={obj} displayCentre={displayCentre} />
       <div className='main'>
-      <Employee emparr={employees} selected={selected} change_selection={change_selection}/>
-      <EmpDetails selectedemp={selected}/>
+      <Employee empArr={employees} selectedEmp={selectedEmp} selectEmployee={selectEmployee} />
+      <EmpDetails selectedEmp={selectedEmp} selectedCentre={selectedCentre} addemp={addemp}  />
       </div>
      
                   

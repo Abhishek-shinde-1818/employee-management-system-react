@@ -1,14 +1,13 @@
 import React from 'react'
 import './navbar.css'
-
 import EmpDetails from './EmpDetails'
-const Navbar = ({obj}) => {
+const Navbar = (props) => {
   
   
   return (
     <div className='navbar'>
-      <h1>{obj.text} </h1>
-      <button className='addemp' type='button' onClick={EmpDetails}>Add Emp</button>
+      <h1>{props.obj.text} </h1>
+      <button id="1" className='addemp' type='button' onClick={props.displayCentre}>Add Emp</button>
     </div>
   )
 }
