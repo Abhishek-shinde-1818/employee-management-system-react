@@ -1,6 +1,7 @@
 import React from 'react'
 import './employee.css'
 import EmpForm from './EmpForm'
+import EditForm from './EditForm'
 
 
 
@@ -10,8 +11,12 @@ const EmpDetails = (props) => {
   {
     return(<EmpForm updateData={props.updateData} addemp={props.addemp} empobj={props.empobj}/>)
   }
-  else {
-    return(<EmpTable selectedEmp={props.selectedEmp}/>)
+  else if(props.selectedCentre==="2")
+  {
+    return(<EditForm selectedEmp={props.selectedEmp}/>)
+  }
+  else if(props.selectedCentre==="3") {
+    return(<EmpTable selectedEmp={props.selectedEmp} displayCentre={props.displayCentre}/>)
   }
 } 
   return (
@@ -24,6 +29,7 @@ const EmpDetails = (props) => {
   )
 }
 const EmpTable = (props) => {
+ 
   return(
     <>
     <table>
@@ -44,8 +50,8 @@ const EmpTable = (props) => {
   </table>
     
   <div className='buttons'>
-  <button className='edit'>edit</button>
-  <button className='delete'>delete</button>
+  <button id="2" className='edit' onClick={props.displayCentre}>edit</button>
+  <button id="3" className='delete'>delete</button>
   </div>
   </>
   )

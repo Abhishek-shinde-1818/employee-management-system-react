@@ -1,33 +1,31 @@
 import React, { useState } from 'react'
-import './empdetails.css'
-const EmpForm = (props) => {
-  const[newEmpobj,setNewEmpobj]=useState({})
-  
-  function updateData(e)
-  {
-let temp= JSON.parse(JSON.stringify(newEmpobj))
+
+const EditForm = (props) => {
+
+const[editedEmpobj,setEditedEmpobj]=useState({})
+const[editedName,setEditedName]=useState(props.selectedEmp.name)
+const[editedSalary,seteditedSalary]=useState(props.selectedEmp.salary)
+const[editedDept,setEditeddept]=useState(props.selectedEmp.dept)
+function editedata(e)
+{
+setEditedName(e.target.value)
+seteditedSalary(e.target.value)
+setEditeddept(e.target.value)
+let temp= JSON.parse(JSON.stringify(editedEmpobj))
 temp[e.target.name]= e.target.value
-setNewEmpobj(temp)
-    
-  }
-  function onsubmit()
-  {
-    console.log("SUBMIT", newEmpobj);
-    console.log("SUBMIsssT");
-    props.addemp(newEmpobj)
-  }
+setEditedEmpobj(temp)
+}
   return (
     <div className='empform'>
-      <form >
+       <form>
         <label>
           Name:
           <input
             id="1"
             type="text"
             name="name"
-            onChange={updateData}
-            
-            required
+            value={editedName}
+            onChange={editedata}
           />
         </label>
         <br />
@@ -37,8 +35,8 @@ setNewEmpobj(temp)
           id="2"
             type="number"
             name="salary"
-            onChange={updateData}
-            required
+            value={editedSalary}
+            onChange={editedata}
           />
         </label>
         <br />
@@ -48,7 +46,8 @@ setNewEmpobj(temp)
           <select
           id="4"
             name="dept"
-            onChange={updateData}
+            value={editedDept}
+            onChange={editedata}
           >
             <option value="IT">IT</option>
             <option value="HR">HR</option>
@@ -57,10 +56,10 @@ setNewEmpobj(temp)
           </select>
         </label>
         <br />
-        <button onClick={onsubmit}>Submit</button>
-      </form>   
+        <button>Submit</button>
+        </form>
     </div>
   )
 }
 
-export default EmpForm
+export default EditForm

@@ -2,18 +2,23 @@ import React, { useState } from 'react'
 import './employee.css'
 const Employee = (props) => {
   const [selectedBt, setselectedBt]=useState("")
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState();
   function handleInputChange(e)
   {
     setInputValue(e.target.value)  
-    setselectedBt(e.target.id)
+    
+  }
+  function onSort(sortDirection)
+  {
+    console.log(sortDirection)
+    setselectedBt(sortDirection)
   }
 
       
   return (
     <div className='employee'>
-    <Toolbar empArr={props.empArr} inputValue={inputValue} handleInputChange={handleInputChange} />
-    <Employeelist empArr={props.empArr} selectedEmp={props.selectedEmp}  selectEmployee={props.selectEmployee} inputValue={inputValue} handleInputChange={handleInputChange} selectedBt={selectedBt}/>
+    <Toolbar empArr={props.empArr} inputValue={inputValue} handleInputChange={handleInputChange} onSort={onSort}/>
+    <Employeelist empArr={props.empArr} selectedEmp={props.selectedEmp}  selectEmployee={props.selectEmployee} inputValue={inputValue} handleInputChange={handleInputChange} selectedBt={selectedBt} displayCentre={props.displayCentre} />
     </div>
   )
 }
@@ -21,9 +26,9 @@ const Toolbar = (props) => {
   
   return (
     <div className='Toolbar'>
-      <input id="1" type="text" value={props.inputValue} onChange={props.handleInputChange} />
-      <button id="2" className='asc' type='button' onClick={props.handleInputChange} >Asc</button>
-      <button id="3" className='dsc' type='button' onClick={props.handleInputChange}>Dsc</button>
+      <input  type="text" value={props.inputValue} onChange={props.handleInputChange} />
+      <button  className='asc' type='button' onClick={()=>props.onSort("asc")} >Asc</button>
+      <button  className='dsc' type='button' onClick={()=>props.onSort("dsc")}>Dsc</button>
       
     </div>
   )
@@ -35,12 +40,13 @@ const Emp = (props)=>{
   }else{
     color = 'green'
   }
-  function fun(){
-    
+  function fun(e){
     props.selectEmployee(props.emp)
+    props.displayCentre(e)
+
   }
   return(
-    <button id="2" style={{backgroundColor:color}} className='empbt' onClick={fun}>{props.emp.name}</button>
+    <button id="3" style={{backgroundColor:color}} className='empbt' onClick={fun}>{props.emp.name}</button>
   )
 }
 
@@ -52,24 +58,24 @@ const Employeelist = (props) => {
   
   let newarr=[]
   
-  let filteredArr=[]
+  
   function fun(){
-    if(selectedBt==="1")
+    if(searchText!==undefined)
     {
-      filteredArr = clonedArray.filter(user => user.name.includes(searchText));
+      clonedArray = clonedArray.filter(user => user.name.startsWith(searchText));
     }
-    else if(selectedBt==="2"){
+    if(selectedBt==="asc"){
       clonedArray.sort((a, b) => (a.name > b.name) ? 1 : -1)
-      filteredArr=clonedArray
+      
     }
-    else{
+    else if(selectedBt==="dsc"){
       clonedArray.sort((a, b) => (a.name < b.name) ? 1 : -1)
-      filteredArr=clonedArray
+     
     }
     
-    for(let i=0;i<filteredArr.length;i++){
+    for(let i=0;i<clonedArray.length;i++){
      
-        newarr.push(<Emp emp={filteredArr[i]} selectedEmp={props.selectedEmp} selectEmployee={props.selectEmployee} key={filteredArr[i].id}/>)
+        newarr.push(<Emp emp={clonedArray[i]} selectedEmp={props.selectedEmp} selectEmployee={props.selectEmployee} key={clonedArray[i].id} displayCentre={props.displayCentre}/>)
     }
     return newarr
   }
