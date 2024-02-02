@@ -7,16 +7,19 @@ import EditForm from './EditForm'
 
 const EmpDetails = (props) => {
   function display(){
+    
   if(props.selectedCentre==="1") 
   {
+    
     return(<EmpForm updateData={props.updateData} addemp={props.addemp} empobj={props.empobj}/>)
+    
   }
   else if(props.selectedCentre==="2")
   {
     return(<EditForm selectedEmp={props.selectedEmp}/>)
   }
   else if(props.selectedCentre==="3") {
-    return(<EmpTable selectedEmp={props.selectedEmp} displayCentre={props.displayCentre}/>)
+    return(<EmpTable selectedEmp={props.selectedEmp} displayCentre={props.displayCentre} delEmp={props.delEmp}/>)
   }
 } 
   return (
@@ -51,7 +54,7 @@ const EmpTable = (props) => {
     
   <div className='buttons'>
   <button id="2" className='edit' onClick={props.displayCentre}>edit</button>
-  <button id="3" className='delete'>delete</button>
+  <button id="3" className='delete' onClick={props.delEmp}>delete</button>
   </div>
   </>
   )

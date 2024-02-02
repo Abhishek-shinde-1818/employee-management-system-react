@@ -29,7 +29,7 @@ const App = () => {
     },
     {
       id:4,
-      name:"abhishek",
+      name:"shrikant",
       salary:30000,
       dept:"IT"
     },
@@ -40,10 +40,16 @@ const App = () => {
       dept:"IT"
     }
   ])
-  
+ 
+  const[selectedEmp,setSelectedEmp] = useState({})
+  function selectEmployee(employee){
+    setSelectedEmp(employee)
+    
+  }
   
   function addemp(newEmpobj)
   {
+    setSelectedEmp({})
     let empId=employees.length + 1
     let temp=JSON.parse(JSON.stringify(employees))
     newEmpobj["id"]=empId
@@ -52,19 +58,26 @@ const App = () => {
     updatedEmployees(temp)
     setSelectedCentre("")
   }
+  function delEmp()
+  {
+    let tempArr=JSON.parse(JSON.stringify(employees))
+    tempArr=tempArr.filter(employee => {
+      
+      return employee.id !== selectedEmp.id;
+    });
+    updatedEmployees(tempArr)
+    setSelectedCentre("")
+  }
   
   
   
   //selected employee state
-  const[selectedEmp,setSelectedEmp] = useState({})
-  function selectEmployee(employee){
-    setSelectedEmp(employee)
-    
-  }
+  
   // state for centre div
   const[selectedCentre,setSelectedCentre]=useState("")
   function displayCentre(e)
   {
+    
     setSelectedCentre(e.target.id)
   }
   return (
@@ -72,7 +85,7 @@ const App = () => {
       <Navbar obj={obj} displayCentre={displayCentre} />
       <div className='main'>
       <Employee empArr={employees} selectedEmp={selectedEmp} selectEmployee={selectEmployee} displayCentre={displayCentre}/>
-      <EmpDetails selectedEmp={selectedEmp} selectedCentre={selectedCentre} addemp={addemp} displayCentre={displayCentre} />
+      <EmpDetails selectedEmp={selectedEmp} selectedCentre={selectedCentre} addemp={addemp} displayCentre={displayCentre} setSelectedEmp={setSelectedEmp} delEmp={delEmp} />
       
       </div>
      

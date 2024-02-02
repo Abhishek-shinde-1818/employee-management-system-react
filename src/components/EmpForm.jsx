@@ -12,8 +12,15 @@ setNewEmpobj(temp)
   }
   function onsubmit()
   {
-    console.log("SUBMIT", newEmpobj);
-    console.log("SUBMIsssT");
+    // let error="";
+    // if(newEmpobj.name=="")
+    // {
+    //    error="enter name"
+    // }
+    // else if(newEmpobj.salary=="")
+    // {
+    //   error="enter salary"
+    // }
     props.addemp(newEmpobj)
   }
   return (
@@ -50,6 +57,7 @@ setNewEmpobj(temp)
             name="dept"
             onChange={updateData}
           >
+            
             <option value="IT">IT</option>
             <option value="HR">HR</option>
             <option value="Finance">Finance</option>
