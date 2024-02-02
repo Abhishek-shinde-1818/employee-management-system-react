@@ -21,6 +21,9 @@ const EmpDetails = (props) => {
   else if(props.selectedCentre==="3") {
     return(<EmpTable selectedEmp={props.selectedEmp} displayCentre={props.displayCentre} delEmp={props.delEmp}/>)
   }
+  else{
+    return(<h2 style={{color:"green"}}>Select employee to see details</h2>)
+  }
 } 
   return (
     <div className='empdetails'>

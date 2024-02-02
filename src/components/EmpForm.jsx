@@ -10,19 +10,17 @@ temp[e.target.name]= e.target.value
 setNewEmpobj(temp)
     
   }
+  
   function onsubmit()
   {
-    // let error="";
-    // if(newEmpobj.name=="")
-    // {
-    //    error="enter name"
-    // }
-    // else if(newEmpobj.salary=="")
-    // {
-    //   error="enter salary"
-    // }
-    props.addemp(newEmpobj)
+   
+    if(newEmpobj.name!==undefined && newEmpobj.salary!==undefined && newEmpobj.dept!==undefined)
+    {
+      props.addemp(newEmpobj)
+    }
+    
   }
+  
   return (
     <div className='empform'>
       <form >
@@ -32,10 +30,10 @@ setNewEmpobj(temp)
             id="1"
             type="text"
             name="name"
-            onChange={updateData}
-            
+            onChange={updateData}  
             required
           />
+          
         </label>
         <br />
         <label>

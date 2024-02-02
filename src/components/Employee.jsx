@@ -17,7 +17,7 @@ const Employee = (props) => {
       
   return (
     <div className='employee'>
-    <Toolbar empArr={props.empArr} inputValue={inputValue} handleInputChange={handleInputChange} onSort={onSort}/>
+    <Toolbar empArr={props.empArr} inputValue={inputValue} handleInputChange={handleInputChange} onSort={onSort} selectedBt={selectedBt}/>
     <Employeelist empArr={props.empArr} selectedEmp={props.selectedEmp}  selectEmployee={props.selectEmployee} inputValue={inputValue} handleInputChange={handleInputChange} selectedBt={selectedBt} displayCentre={props.displayCentre} />
     </div>
   )
@@ -27,9 +27,9 @@ const Toolbar = (props) => {
   return (
     <div className='Toolbar'>
       <input  type="text" value={props.inputValue} onChange={props.handleInputChange} />
-      <button  className='asc' type='button' onClick={()=>props.onSort("asc")} >Asc</button>
-      <button  className='dsc' type='button' onClick={()=>props.onSort("dsc")}>Dsc</button>
-      
+      <button  className='asc' type='button' style={{backgroundColor: props.selectedBt==="asc" ? "red" : "green"}} onClick={()=>props.onSort("asc")} >Asc</button>
+      <button  className='dsc' type='button' style={{backgroundColor: props.selectedBt==="dsc" ? "red" : "green"}} onClick={()=>props.onSort("dsc")}>Dsc</button>
+    
     </div>
   )
 }
@@ -52,7 +52,7 @@ const Emp = (props)=>{
 
 const Employeelist = (props) => {
   
-  let clonedArray = props.empArr.map(a => {return {...a}})
+  let clonedArray = [...props.empArr]
   let searchText=props.inputValue
   let selectedBt=props.selectedBt
   
@@ -62,7 +62,7 @@ const Employeelist = (props) => {
   function fun(){
     if(searchText!==undefined)
     {
-      clonedArray = clonedArray.filter(user => user.name.startsWith(searchText));
+      clonedArray = clonedArray.filter(user => user.name.includes(searchText));
     }
     if(selectedBt==="asc"){
       clonedArray.sort((a, b) => (a.name > b.name) ? 1 : -1)
