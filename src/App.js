@@ -1,45 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import EmpDetails from './components/EmpDetails.jsx'
 import Employee from './components/Employee.jsx'
 
 const App = () => {
+  
+  
+
   const obj={
     text:"ays software solution",
   }
-  const[employees,updatedEmployees] = useState([
-    {
-      id:1,
-      name:"abhi",
-      salary:30000,
-      dept:"IT"
-    },
-    {
-      id:2,
-      name:"rohan",
-      salary:35000,
-      dept:"ENGG"
-    },
-    {
-      id:3,
-      name:"bhargav",
-      salary:50000,
-      dept:"ENGG"
-    },
-    {
-      id:4,
-      name:"shrikant",
-      salary:30000,
-      dept:"IT"
-    },
-    {
-      id:5,
-      name:"bhairav",
-      salary:30000,
-      dept:"IT"
-    }
-  ])
+  const[employees,updatedEmployees] = useState([])
  
   const[selectedEmp,setSelectedEmp] = useState({})
   function selectEmployee(employee){
@@ -47,6 +19,22 @@ const App = () => {
     
   }
   
+  useEffect(()=>{
+    
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
+        console.log("get respone",response)
+        return response.json();
+      })
+      .then((result) => {
+        updatedEmployees(result)
+        
+      })
+      .catch((error)=>{
+        console.log("ddddddddddddddddddddddddddddd",error);
+      })
+},[]);
+
   function addemp(newEmpobj)
   {
     setSelectedEmp({})

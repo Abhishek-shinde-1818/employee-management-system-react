@@ -8,9 +8,18 @@ const[editedSalary,seteditedSalary]=useState(props.selectedEmp.salary)
 const[editedDept,setEditeddept]=useState(props.selectedEmp.dept)
 function editedata(e)
 {
-setEditedName(e.target.value)
-seteditedSalary(e.target.value)
-setEditeddept(e.target.value)
+ if(e.target.id==="1")
+ {
+  setEditedName(e.target.value)
+ }
+ else if(e.target.id==="2")
+ {
+  seteditedSalary(e.target.value)
+ }
+ else{
+  setEditeddept(e.target.value)
+ }
+ 
 let temp= JSON.parse(JSON.stringify(editedEmpobj))
 temp[e.target.name]= e.target.value
 setEditedEmpobj(temp)
