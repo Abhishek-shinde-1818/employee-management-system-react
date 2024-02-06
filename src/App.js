@@ -20,19 +20,48 @@ const App = () => {
   }
   
   useEffect(()=>{
+
+    // let myPromise=new Promise(function(resolve,reject){
+    //    let res=fetch('https://beac44418a474413bca57f1418382ddd.api.mockbin.io/')
+    //   //  resolve(res)
+    //    reject("eeeeeeeeeee")
+    // })
+    // myPromise.then((res)=>{
+    //   console.log(res);
+    //   return res.json();
+    // })
+    // .then((data)=>{
+    //   updatedEmployees(data)
+    // })
+    // .catch((error)=>{
+    //   console.log("eeeeee",error);
+    // })
     
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((response) => {
-        console.log("get respone",response)
-        return response.json();
-      })
-      .then((result) => {
-        updatedEmployees(result)
+    // fetch('https://beac44418a474413bca57f1418382ddd.api.mockbin.io/')
+    //   .then((response) => {
+    //     console.log("get respone",response)
+    //     return response.json();
+    //   })
+    //   .then((result) => {
+    //     updatedEmployees(result)
         
-      })
-      .catch((error)=>{
-        console.log("ddddddddddddddddddddddddddddd",error);
-      })
+    //   })
+    //   .catch((error)=>{
+    //     console.log("ddddddddddddddddddddddddddddd",error);
+    //   })
+    
+    const myFun = async() =>{
+      try{
+        let response= await fetch('https://beac44418a474413bca57f1418382ddd.api.mockbin.io/')
+        console.log("get respone",response);
+        let res= await response.json()
+        updatedEmployees(res)
+      }
+      catch(error){
+         console.log("API not fetch",error);
+      }
+    }
+    myFun()
 },[]);
 
   function addemp(newEmpobj)
