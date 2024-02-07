@@ -26,7 +26,7 @@ setEditedEmpobj(temp)
 }
   return (
     <div className='empform'>
-       <form>
+      
         <label>
           Name:
           <input
@@ -35,6 +35,7 @@ setEditedEmpobj(temp)
             name="name"
             value={editedName}
             onChange={editedata}
+            required
           />
         </label>
         <br />
@@ -46,6 +47,7 @@ setEditedEmpobj(temp)
             name="salary"
             value={editedSalary}
             onChange={editedata}
+            required
           />
         </label>
         <br />
@@ -57,6 +59,7 @@ setEditedEmpobj(temp)
             name="dept"
             value={editedDept}
             onChange={editedata}
+            required
           >
             <option value="IT">IT</option>
             <option value="HR">HR</option>
@@ -65,8 +68,8 @@ setEditedEmpobj(temp)
           </select>
         </label>
         <br />
-        <button>Submit</button>
-        </form>
+        <button onClick={()=>props.editEmployee(editedEmpobj)}>Submit</button>
+       
     </div>
   )
 }

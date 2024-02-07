@@ -3,6 +3,11 @@ import './App.css'
 import Navbar from './components/Navbar'
 import EmpDetails from './components/EmpDetails.jsx'
 import Employee from './components/Employee.jsx'
+import { Stack } from '@mui/material'
+
+
+
+
 
 const App = () => {
   
@@ -20,7 +25,7 @@ const App = () => {
   }
   
   useEffect(()=>{
-
+  //1-by creating new promise
     // let myPromise=new Promise(function(resolve,reject){
     //    let res=fetch('https://beac44418a474413bca57f1418382ddd.api.mockbin.io/')
     //   //  resolve(res)
@@ -36,7 +41,8 @@ const App = () => {
     // .catch((error)=>{
     //   console.log("eeeeee",error);
     // })
-    
+  
+  //2-by directly using promises
     // fetch('https://beac44418a474413bca57f1418382ddd.api.mockbin.io/')
     //   .then((response) => {
     //     console.log("get respone",response)
@@ -50,6 +56,7 @@ const App = () => {
     //     console.log("ddddddddddddddddddddddddddddd",error);
     //   })
     
+  //3-by using async and await
     const myFun = async() =>{
       try{
         let response= await fetch('https://beac44418a474413bca57f1418382ddd.api.mockbin.io/')
@@ -57,11 +64,40 @@ const App = () => {
         let res= await response.json()
         updatedEmployees(res)
       }
+      
       catch(error){
          console.log("API not fetch",error);
       }
     }
     myFun()
+
+  //4-by using promises.all method to execute multiple promises simultaniously
+  // const fetchData1 = () => {
+  //   return new Promise((resolve, reject) => {
+     
+  //     setTimeout(() => {
+  //       const result = { message: 'Data 1 fetched successfully' };
+  //       resolve(result);
+  //     }, 2000); 
+  //   });
+  // };
+  // const fetchData2 = () => {
+  //   return new Promise((resolve, reject) => {
+      
+  //     setTimeout(() => {
+  //       const result = { message: 'Data 2 fetched successfully' };
+  //       resolve(result);
+  //     }, 3000); 
+  //   });
+  // };
+  // Promise.all([fetchData1(),fetchData2()])
+  // .then(([res1,res2])=>{
+  //   console.log(res1);
+  //   console.log(res2);
+  // })
+  // .catch((error)=>{
+  //   console.log("error occured",error);
+  //})
 },[]);
 
   function addemp(newEmpobj)
@@ -85,6 +121,20 @@ const App = () => {
     updatedEmployees(tempArr)
     setSelectedCentre("")
   }
+  function editEmployee(editedEmpobj)
+  {
+    
+    let tempArr=JSON.parse(JSON.stringify(employees))
+    let empIndex=tempArr.findIndex(obj => obj.id === selectedEmp.id);
+    console.log("index found",empIndex)
+    
+    tempArr[empIndex]=editedEmpobj
+    console.log("curr obj",tempArr[empIndex]);
+    updatedEmployees(tempArr)
+    setSelectedCentre("")
+
+  }
+ 
   
   
   
@@ -98,16 +148,18 @@ const App = () => {
     setSelectedCentre(e.target.id)
   }
   return (
-    <div className="demo">
-      <Navbar obj={obj} displayCentre={displayCentre} />
-      <div className='main'>
-      <Employee empArr={employees} selectedEmp={selectedEmp} selectEmployee={selectEmployee} displayCentre={displayCentre}/>
-      <EmpDetails selectedEmp={selectedEmp} selectedCentre={selectedCentre} addemp={addemp} displayCentre={displayCentre} setSelectedEmp={setSelectedEmp} delEmp={delEmp} />
+    <>
       
-      </div>
+      <Navbar obj={obj} displayCentre={displayCentre} />
+      <Stack 
+      direction="row">
+      <Employee empArr={employees} selectedEmp={selectedEmp} selectEmployee={selectEmployee} displayCentre={displayCentre}/>
+      <EmpDetails selectedEmp={selectedEmp} selectedCentre={selectedCentre} addemp={addemp} displayCentre={displayCentre} setSelectedEmp={setSelectedEmp} delEmp={delEmp} editEmployee={editEmployee} />
+      
+      </Stack>
      
                   
-    </div>
+    </>
   )
 }
 

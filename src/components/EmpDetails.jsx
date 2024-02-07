@@ -16,7 +16,7 @@ const EmpDetails = (props) => {
   }
   else if(props.selectedCentre==="2")
   {
-    return(<EditForm selectedEmp={props.selectedEmp}/>)
+    return(<EditForm selectedEmp={props.selectedEmp} editEmployee={props.editEmployee}/>)
   }
   else if(props.selectedCentre==="3") {
     return(<EmpTable selectedEmp={props.selectedEmp} displayCentre={props.displayCentre} delEmp={props.delEmp}/>)

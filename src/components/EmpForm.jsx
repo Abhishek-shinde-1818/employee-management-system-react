@@ -23,7 +23,7 @@ setNewEmpobj(temp)
   
   return (
     <div className='empform'>
-      <form >
+      
         <label>
           Name:
           <input
@@ -64,7 +64,7 @@ setNewEmpobj(temp)
         </label>
         <br />
         <button onClick={onsubmit}>Submit</button>
-      </form>   
+         
     </div>
   )
 }
