@@ -15,24 +15,25 @@ const Navbar = (props) => {
   
   return (
     
-    <AppBar sx={{direction:"row"}} >
+    <Box sx={{ flexGrow: 1 }}>
+    <AppBar position="static">
+    <Typography sx={{color: "black", marginTop:"30px"}}>Ays software solution</Typography>
+    <Toolbar sx={{justifyContent: "flex-end"}}>
     
-    
-
-          <Button
-          color='inherit'
+      
+    <Button
+          
           variant='contained'
           id="1"
-          sx={{color: "black"}}
-          onClick={props.displayCentre}
+          
+          sx={{height:"50px"}}
+          onClick={(e)=>{props.displayCentre(e.target.id)}}
         >
           Add Employee
         </Button>
-    <Typography sx={{color: "black"}}>Ays software solution</Typography>
-
-   
-      </AppBar>
-     
+    </Toolbar>
+  </AppBar>
+  </Box>
   )
 }
 

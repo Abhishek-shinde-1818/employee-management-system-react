@@ -3,7 +3,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import EmpDetails from './components/EmpDetails.jsx'
 import Employee from './components/Employee.jsx'
-import { Stack } from '@mui/material'
+import { Box, Grid, Stack } from '@mui/material'
 
 
 
@@ -142,21 +142,28 @@ const App = () => {
   
   // state for centre div
   const[selectedCentre,setSelectedCentre]=useState("")
-  function displayCentre(e)
+  function displayCentre(id)
   {
     
-    setSelectedCentre(e.target.id)
+    setSelectedCentre(id)
   }
   return (
     <>
       
       <Navbar obj={obj} displayCentre={displayCentre} />
-      <Stack 
-      direction="row">
+     
+      <Grid
+      container
+      direction="row"
+      gap={3}
+      width={"100%"}
+      >
+
       <Employee empArr={employees} selectedEmp={selectedEmp} selectEmployee={selectEmployee} displayCentre={displayCentre}/>
       <EmpDetails selectedEmp={selectedEmp} selectedCentre={selectedCentre} addemp={addemp} displayCentre={displayCentre} setSelectedEmp={setSelectedEmp} delEmp={delEmp} editEmployee={editEmployee} />
+      </Grid>
       
-      </Stack>
+      
      
                   
     </>

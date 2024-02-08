@@ -2,6 +2,7 @@ import React from 'react'
 import './employee.css'
 import EmpForm from './EmpForm'
 import EditForm from './EditForm'
+import { Paper } from '@mui/material'
 
 
 
@@ -26,12 +27,12 @@ const EmpDetails = (props) => {
   }
 } 
   return (
-    <div className='empdetails'>
+    <Paper elevation={3} sx={{width:"70%"}}>
     {
        display()
     }
     
-    </div> 
+    </Paper> 
   )
 }
 const EmpTable = (props) => {
